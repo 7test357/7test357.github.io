@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>군대 날짜 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .progress {
+            height: 30px;
+            background-color: #4caf50;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+        .remaining {
+            height: 30px;
+            background-color: #f44336;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1>군대 날짜 계산기</h1>
+
+<p id="remainingDays"></p>
+<div class="bar">
+    <div id="progressBar" class="progress"></div>
+</div>
+<div class="bar">
+    <div id="remainingBar" class="remaining"></div>
+</div>
+
+<script>
+    const enlistDate = new Date('2024-09-24');
+    const dischargeDate = new Date('2026-03-23');
+    const today = new Date();
+
+    // 날짜 계산
+    const totalDays = (dischargeDate - enlistDate) / (1000 * 60 * 60 * 24);
+    const daysPassed = (today - enlistDate) / (1000 * 60 * 60 * 24);
+    const daysRemaining = (dischargeDate - today) / (1000 * 60 * 60 * 24);
+
+    // 남은 날짜 표시
+    document.getElementById('remainingDays').innerText = `남은 날짜: ${Math.ceil(daysRemaining)}일`;
+
+    // 진행 퍼센트와 남은 퍼센트 계산
+    const progressPercent = (daysPassed / totalDays) * 100;
+    const remainingPercent = 100 - progressPercent;
+
+    // 막대 그래프 표시
+    document.getElementById('progressBar').style.width = `${progressPercent}%`;
+    document.getElementById('progressBar').innerText = `${Math.ceil(progressPercent)}% 진행됨`;
+    
+    document.getElementById('remainingBar').style.width = `${remainingPercent}%`;
+    document.getElementById('remainingBar').innerText = `${Math.ceil(remainingPercent)}% 남음`;
+</script>
+
+</body>
+</html>
