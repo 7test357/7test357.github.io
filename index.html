@@ -7,19 +7,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            margin-bottom: 20px;
+            text-align: center;
+            margin: 50px;
         }
         .bar {
-            width: 80%;
+            width: 100%;
             background-color: #f3f3f3;
             border-radius: 5px;
             margin: 20px 0;
@@ -37,9 +29,6 @@
             border-radius: 5px;
             text-align: center;
             color: white;
-        }
-        p {
-            font-size: 1.2em;
         }
     </style>
 </head>
@@ -65,8 +54,8 @@
     const daysPassed = (today - enlistDate) / (1000 * 60 * 60 * 24);
     const daysRemaining = (dischargeDate - today) / (1000 * 60 * 60 * 24);
 
-    // 남은 날짜 표시
-    document.getElementById('remainingDays').innerText = `남은 날짜: ${Math.ceil(daysRemaining)}일`;
+    // 남은 날짜 표시 (소수점 이하 포함)
+    document.getElementById('remainingDays').innerText = `남은 날짜: ${daysRemaining.toFixed(2)}일`;
 
     // 진행 퍼센트와 남은 퍼센트 계산
     const progressPercent = (daysPassed / totalDays) * 100;
@@ -74,10 +63,10 @@
 
     // 막대 그래프 표시
     document.getElementById('progressBar').style.width = `${progressPercent}%`;
-    document.getElementById('progressBar').innerText = `${Math.ceil(progressPercent)}% 진행됨`;
+    document.getElementById('progressBar').innerText = `${progressPercent.toFixed(2)}% 진행됨`;
     
     document.getElementById('remainingBar').style.width = `${remainingPercent}%`;
-    document.getElementById('remainingBar').innerText = `${Math.ceil(remainingPercent)}% 남음`;
+    document.getElementById('remainingBar').innerText = `${remainingPercent.toFixed(2)}% 남음`;
 </script>
 
 </body>
