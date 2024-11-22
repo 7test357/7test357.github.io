@@ -49,19 +49,15 @@
     const dischargeDate = new Date('2026-03-23');
     const today = new Date();
 
-    // 날짜 계산
     const totalDays = (dischargeDate - enlistDate) / (1000 * 60 * 60 * 24);
     const daysPassed = (today - enlistDate) / (1000 * 60 * 60 * 24);
     const daysRemaining = (dischargeDate - today) / (1000 * 60 * 60 * 24);
 
-    // 남은 날짜 표시 (소수점 이하 포함)
     document.getElementById('remainingDays').innerText = `남은 날짜: ${daysRemaining.toFixed(2)}일`;
 
-    // 진행 퍼센트와 남은 퍼센트 계산
     const progressPercent = (daysPassed / totalDays) * 100;
     const remainingPercent = 100 - progressPercent;
 
-    // 막대 그래프 표시
     document.getElementById('progressBar').style.width = `${progressPercent}%`;
     document.getElementById('progressBar').innerText = `${progressPercent.toFixed(2)}% 진행됨`;
     
