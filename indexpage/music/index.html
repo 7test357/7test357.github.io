@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>음악 재생 페이지</title>
+    <title>여러 유튜브 영상 재생 페이지</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
             text-align: center;
         }
@@ -21,11 +19,18 @@
             margin-bottom: 20px;
         }
 
-        iframe {
-            width: 560px;
-            height: 315px;
-            border: none;
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             margin-top: 20px;
+        }
+
+        iframe {
+            width: 320px;
+            height: 180px;
+            border: none;
+            margin: 10px;
         }
 
         button {
@@ -44,40 +49,13 @@
     </style>
 </head>
 <body>
-    <h1>음악 재생 페이지</h1>
-    <iframe 
-        id="youtubePlayer"
-        src="https://www.youtube.com/embed/AX7BcBD8-BA" 
-        allowfullscreen>
-    </iframe>
-    <br>
-    <button onclick="playVideo()">재생</button>
-    <button onclick="pauseVideo()">일시 정지</button>
-
-    <script>
-        let player;
-
-        // YouTube Iframe API를 로드합니다.
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtubePlayer', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // 플레이어 준비 완료
-        }
-
-        function playVideo() {
-            player.playVideo();
-        }
-
-        function pauseVideo() {
-            player.pauseVideo();
-        }
-    </script>
+    <h1>여러 유튜브 영상 재생기</h1>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/AX7BcBD8-BA" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+    </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
