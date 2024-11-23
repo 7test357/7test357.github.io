@@ -103,21 +103,24 @@
 
         function onPlayerReady(event) {
             // 버튼 이벤트 설정
-            document.getElementById('playPauseBtn').onclick = togglePlayPause;
+            document.getElementById('playPauseBtn').onclick = function() {
+                const state = player.getPlayerState();
+                if (state === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                    this.innerText = '재생';
+                } else {
+                    player.playVideo();
+                    this.innerText = '일시 정지';
+                }
+            };
+
             document.getElementById('prevBtn').onclick = playPrevious;
             document.getElementById('nextBtn').onclick = playNext;
             document.getElementById('fullscreenBtn').onclick = toggleFullscreen;
             document.getElementById('volumeSlider').oninput = updateVolume;
-        }
 
-        function togglePlayPause() {
-            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-                document.getElementById('playPauseBtn').innerText = '재생';
-            } else {
-                player.playVideo();
-                document.getElementById('playPauseBtn').innerText = '일시 정지';
-            }
+            // 비디오 시작
+            player.loadVideoById(videos[currentVideoIndex]);
         }
 
         function playPrevious() {
