@@ -46,7 +46,8 @@
 <body>
     <h1>음악 재생 페이지</h1>
     <iframe 
-        src="https://www.youtube.com/watch?v=AX7BcBD8-BA" 
+        id="youtubePlayer"
+        src="https://www.youtube.com/embed/AX7BcBD8-BA" 
         allowfullscreen>
     </iframe>
     <br>
@@ -54,12 +55,16 @@
     <button onclick="pauseVideo()">일시 정지</button>
 
     <script>
-        const iframe = document.querySelector('iframe');
-        const player = new YT.Player(iframe, {
-            events: {
-                'onReady': onPlayerReady
-            }
-        });
+        let player;
+
+        // YouTube Iframe API를 로드합니다.
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
 
         function onPlayerReady(event) {
             // 플레이어 준비 완료
