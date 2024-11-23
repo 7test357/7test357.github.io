@@ -21,9 +21,11 @@
             margin-bottom: 20px;
         }
 
-        audio {
+        iframe {
+            width: 560px;
+            height: 315px;
+            border: none;
             margin-top: 20px;
-            width: 300px;
         }
 
         button {
@@ -42,25 +44,36 @@
     </style>
 </head>
 <body>
-    <h1>음악 재생기</h1>
-    <audio id="audioPlayer" controls>
-    <source src="https://raw.githubusercontent.com/7test357/indexpage/music/muscis/tiny_riot.mp3" type="audio/mpeg">
-    브라우저가 오디오 태그를 지원하지 않습니다.
-</audio>
+    <h1>음악 재생 페이지</h1>
+    <iframe 
+        src="https://www.youtube.com/embed/VIDEO_ID" 
+        allowfullscreen>
+    </iframe>
     <br>
-    <button onclick="playMusic()">재생</button>
-    <button onclick="pauseMusic()">일시 정지</button>
+    <button onclick="playVideo()">재생</button>
+    <button onclick="pauseVideo()">일시 정지</button>
 
     <script>
-        const audioPlayer = document.getElementById('audioPlayer');
+        const iframe = document.querySelector('iframe');
+        const player = new YT.Player(iframe, {
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
 
-        function playMusic() {
-            audioPlayer.play();
+        function onPlayerReady(event) {
+            // 플레이어 준비 완료
         }
 
-        function pauseMusic() {
-            audioPlayer.pause();
+        function playVideo() {
+            player.playVideo();
+        }
+
+        function pauseVideo() {
+            player.pauseVideo();
         }
     </script>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
