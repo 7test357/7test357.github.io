@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 암호화/복호화 & Hello World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.6), rgba(0, 255, 255, 0.6), rgba(0, 0, 255, 0.6));
+            background-size: 300% 300%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</head>
+<body>
+
+    <h1>텍스트 암호화/복호화</h1>
+
+    <div class="container">
+        <h2>텍스트 암호화/복호화</h2>
+        <input type="text" id="originalText" placeholder="텍스트 입력" />
+        <input type="password" id="encryptionKey" placeholder="암호화 키 입력" />
+        <button onclick="encryptText()">암호화</button>
+
+        <input type="text" id="encryptedOutput" placeholder="암호화된 텍스트" readonly />
+        <button onclick="copyToClipboard()">복사</button>
+
+        <input type="text" id="encryptedTextInput" placeholder="암호화된 텍스트 입력" />
+        <input type="password" id="decryptKeyInput" placeholder="복호화 키 입력" />
+        <button onclick="decryptText()">복호화</button>
+
+        <p id="decryptedOutput"></p>
+    </div>
+
+    <script>
+        function encryptText() {
+            const text = document.getElementById('originalText').value;
+            const key = document.getElementById('encryptionKey').value;
+            const encrypted = CryptoJS.AES.encrypt(text, key).toString();
+            document.getElementById('encryptedOutput').value = encrypted;
+        }
+
+        function decryptText() {
+            const encryptedText = document.getElementById('encryptedTextInput').value;
+            const key = document.getElementById('decryptKeyInput').value;
+            const decrypted = CryptoJS.AES.decrypt(encryptedText, key);
+            const originalText = decrypted.toString(CryptoJS.enc.Utf8);
+            document.getElementById('decryptedOutput').textContent = `복호화된 텍스트: ${originalText}`;
+        }
+
+        function copyToClipboard() {
+            const encryptedOutput = document.getElementById('encryptedOutput');
+            encryptedOutput.select();
+            navigator.clipboard.writeText(encryptedOutput.value).then(() => {
+                alert('암호화된 텍스트가 클립보드에 복사되었습니다.');
+            }).catch(err => {
+                console.error('복사 실패: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
