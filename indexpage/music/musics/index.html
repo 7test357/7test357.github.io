@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음악 재생 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
 
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        audio {
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>음악 재생기</h1>
+    <audio id="audioPlayer" controls>
+        <source src="tiny_riot.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+    </audio>
+    <br>
+    <button onclick="playMusic()">재생</button>
+    <button onclick="pauseMusic()">일시 정지</button>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        function playMusic() {
+            audioPlayer.play();
+        }
+
+        function pauseMusic() {
+            audioPlayer.pause();
+        }
+    </script>
+</body>
+</html>
