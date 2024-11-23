@@ -104,38 +104,38 @@
         function onPlayerReady(event) {
             // 비디오 시작
             player.loadVideoById(videos[currentVideoIndex]);
-
-            // 버튼 이벤트 설정
-            document.getElementById('playPauseBtn').onclick = togglePlayPause;
-            document.getElementById('prevBtn').onclick = playPrevious;
-            document.getElementById('nextBtn').onclick = playNext;
-            document.getElementById('fullscreenBtn').onclick = toggleFullscreen;
-            document.getElementById('volumeSlider').oninput = updateVolume;
+            updateButtonLabel(); // 버튼 상태 업데이트
         }
 
         function togglePlayPause() {
             const state = player.getPlayerState();
             if (state === YT.PlayerState.PLAYING) {
                 player.pauseVideo();
-                document.getElementById('playPauseBtn').innerText = '재생';
             } else {
                 player.playVideo();
-                document.getElementById('playPauseBtn').innerText = '일시 정지';
             }
+            updateButtonLabel(); // 버튼 상태 업데이트
+        }
+
+        function updateButtonLabel() {
+            const state = player.getPlayerState();
+            document.getElementById('playPauseBtn').innerText = (state === YT.PlayerState.PLAYING) ? '일시 정지' : '재생';
         }
 
         function playPrevious() {
             currentVideoIndex = (currentVideoIndex > 0) ? currentVideoIndex - 1 : videos.length - 1;
-            player.loadVideoById(videos[currentVideoIndex]);
-            document.getElementById('playPauseBtn').innerText = '일시 정지'; // 상태 업데이트
-            player.playVideo(); // 다음 영상 재생
+            loadVideo();
         }
 
         function playNext() {
             currentVideoIndex = (currentVideoIndex < videos.length - 1) ? currentVideoIndex + 1 : 0;
+            loadVideo();
+        }
+
+        function loadVideo() {
             player.loadVideoById(videos[currentVideoIndex]);
-            document.getElementById('playPauseBtn').innerText = '일시 정지'; // 상태 업데이트
-            player.playVideo(); // 다음 영상 재생
+            player.playVideo(); // 새 비디오를 로드하면서 자동 재생
+            updateButtonLabel(); // 버튼 상태 업데이트
         }
 
         function toggleFullscreen() {
@@ -155,6 +155,14 @@
             const volume = document.getElementById('volumeSlider').value;
             player.setVolume(volume);
         }
+
+        // 버튼 이벤트 설정
+        document.getElementById('playPauseBtn').onclick = togglePlayPause;
+        document.getElementById('prevBtn').onclick = playPrevious;
+        document.getElementById('nextBtn').onclick = playNext;
+        document.getElementById('fullscreenBtn').onclick = toggleFullscreen;
+        document.getElementById('volumeSlider').oninput = updateVolume;
+
     </script>
 
     <script src="https://www.youtube.com/iframe_api"></script>
