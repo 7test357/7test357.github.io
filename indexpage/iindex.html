@@ -80,15 +80,36 @@
             top: 20px;
             right: 20px;
         }
+
+        .description {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #ddd; /* 설명 색상 */
+        }
     </style>
 </head>
 <body class="light-mode">
     <h1>목록 페이지</h1>
-    <button onclick="location.href='1music/index.html'">음악</button>
-    <button onclick="location.href='2army/index.html'">군대날짜</button>
-    <button onclick="location.href='3txt/index.html'">메세지 전송</button>
-    <button onclick="location.href='4file/index.html'">파일</button>
-    <button onclick="location.href='5txt/index.html'">텍스트</button>
+    <div>
+        <button onclick="location.href='1music/index.html'">음악</button>
+        <div class="description">음악 파일을 관리합니다.</div>
+    </div>
+    <div>
+        <button onclick="location.href='2army/index.html'">군대날짜</button>
+        <div class="description">군대 날짜를 확인합니다.</div>
+    </div>
+    <div>
+        <button onclick="location.href='3txt/index.html'">메세지 전송</button>
+        <div class="description">메세지를 전송합니다.</div>
+    </div>
+    <div>
+        <button onclick="location.href='4file/index.html'">파일</button>
+        <div class="description">파일을 업로드 및 다운로드합니다.</div>
+    </div>
+    <div>
+        <button onclick="location.href='5txt/index.html'">텍스트</button>
+        <div class="description">텍스트 파일을 관리합니다.</div>
+    </div>
     <button id="toggleTheme" onclick="toggleTheme()">다크/라이트 모드 전환</button>
 
     <script>
