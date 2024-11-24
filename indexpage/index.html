@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-image: url('https://source.unsplash.com/random/1920x1080');
+            background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -15,30 +16,182 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.5s, color 0.5s;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px 0;
+            max-width: 900px;
+        }
+
+        .button-box {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .button-box:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
         button {
-            padding: 10px 20px;
-            background-color: #5cb85c;
+            padding: 15px 30px;
+            background-color: rgba(92, 184, 92, 0.8);
             border: none;
             color: white;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
-            font-size: 16px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         button:hover {
-            background-color: #4cae4c;
+            background-color: rgba(76, 175, 76, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark-mode button {
+            background-color: rgba(92, 184, 92, 0.6);
+        }
+
+        .light-mode {
+            background-color: white;
+            color: black;
+            text-shadow: none;
+        }
+
+        .description {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: black;
+        }
+
+        .dark-mode .description {
+            color: white;
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
         }
     </style>
 </head>
-<body>
-    <h1>파일 이동 버튼</h1>
-    <button onclick="location.href='1music/index.html'">음악</button>
-    <button onclick="location.href='2army/index.html'">군대날짜</button>
-    <button onclick="location.href='3txt/index.html'">메세지 전송</button>
-    <button onclick="location.href='4file/index.html'">파일</button>
-    <button onclick="location.href='5txt/index.html'">텍스트</button>
+<body class="light-mode">
+    <h1>목록 페이지</h1>
+    <div class="button-container">
+        <div class="button-box">
+            <button onclick="location.href='1music/index.html'">음악</button>
+            <div class="description">영상을 보는 페이지입니다.</div>
+        </div>
+        <div class="button-box">
+            <button onclick="location.href='2army/index.html'">군대날짜</button>
+            <div class="description">군생활 날짜 계산 페이지입니다.</div>
+        </div>
+        <div class="button-box">
+            <button onclick="location.href='3txt/index.html'">메세지 전송</button>
+            <div class="description">메세지를 전송해주는 페이지입니다.</div>
+        </div>
+        <div class="button-box">
+            <button onclick="location.href='4file/index.html'">파일</button>
+            <div class="description">암호화된 파일을 복호화해주는 페이지입니다.</div>
+        </div>
+        <div class="button-box">
+            <button onclick="location.href='5txt/index.html'">텍스트</button>
+            <div class="description">암호화된 텍스트를 복호화해주는 페이지입니다.</div>
+        </div>
+    </div>
+    <div class="toggle-container">
+        <label class="toggle">
+            <input type="checkbox" id="toggleTheme" onchange="toggleTheme()">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                body.style.backgroundColor = 'white';
+            } else {
+                body.style.backgroundColor = '';
+            }
+        }
+    </script>
 </body>
 </html>
