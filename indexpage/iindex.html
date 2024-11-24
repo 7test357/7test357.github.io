@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://source.unsplash.com/random/1920x1080'); /* 랜덤 배경 이미지 */
+            background-image: url('https://source.unsplash.com/random/1920x1080');
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -18,6 +18,7 @@
             text-align: center;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.5s, color 0.5s;
         }
 
         h1 {
@@ -53,6 +54,20 @@
             transform: translateY(0);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
+
+        /* 다크모드 스타일 */
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark-mode button {
+            background-color: rgba(92, 184, 92, 0.6);
+        }
+
+        .dark-mode button:hover {
+            background-color: rgba(76, 175, 76, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -62,5 +77,12 @@
     <button onclick="location.href='3txt/index.html'">메세지 전송</button>
     <button onclick="location.href='4file/index.html'">파일</button>
     <button onclick="location.href='5txt/index.html'">텍스트</button>
+    <button id="toggleTheme" onclick="toggleTheme()">다크/라이트 모드 전환</button>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </body>
 </html>
