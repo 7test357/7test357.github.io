@@ -16,7 +16,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
-            color: white;
+            color: white; /* 기본 색상: 다크 모드 */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             transition: background-color 0.5s, color 0.5s;
             position: relative; /* 절대 위치를 위한 기준 설정 */
@@ -59,7 +59,7 @@
         /* 다크모드 스타일 */
         .dark-mode {
             background-color: #121212;
-            color: #ffffff;
+            color: #ffffff; /* 다크 모드 글자 색상 */
         }
 
         .dark-mode button {
@@ -68,6 +68,13 @@
 
         .dark-mode button:hover {
             background-color: rgba(76, 175, 76, 0.8);
+        }
+
+        /* 화이트 모드 스타일 */
+        .light-mode {
+            background-color: white; /* 화이트 모드 배경 색상 */
+            color: black; /* 화이트 모드 글자 색상 */
+            text-shadow: none; /* 화이트 모드에서는 그림자 제거 */
         }
 
         /* 다크/라이트 모드 전환 버튼 스타일 */
@@ -89,7 +96,14 @@
 
     <script>
         function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                body.style.backgroundColor = 'white'; // 화이트 모드 배경 색상
+            } else {
+                body.style.backgroundColor = ''; // 기본 배경 이미지로 복원
+            }
         }
     </script>
 </body>
