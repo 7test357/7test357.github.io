@@ -19,6 +19,7 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             transition: background-color 0.5s, color 0.5s;
+            position: relative; /* 절대 위치를 위한 기준 설정 */
         }
 
         h1 {
@@ -67,6 +68,13 @@
 
         .dark-mode button:hover {
             background-color: rgba(76, 175, 76, 0.8);
+        }
+
+        /* 다크/라이트 모드 전환 버튼 스타일 */
+        #toggleTheme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
     </style>
 </head>
